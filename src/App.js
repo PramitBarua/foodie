@@ -1,10 +1,10 @@
 import React from "react";
-import "./App.css";
+import { Search } from "./Component";
 
 function App() {
   return (
     <div className="App">
-      <h1>this is a test run</h1>
+      <Search />
     </div>
   );
 }
