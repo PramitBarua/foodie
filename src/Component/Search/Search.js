@@ -3,14 +3,17 @@ import styles from "./Search.module.scss";
 
 function Search() {
   return (
-    <div>
+    <form className={styles.container}>
       <input
         type="text"
         data-test="searchInput"
         className={styles.searchInput}
+        placeholder="Search over 1,000,000 recipes..."
       />
-      <button data-test="searchBtn">Search</button>
-    </div>
+      <button data-test="searchBtn" className={styles.searchBtn}>
+        Search
+      </button>
+    </form>
   );
 }
 

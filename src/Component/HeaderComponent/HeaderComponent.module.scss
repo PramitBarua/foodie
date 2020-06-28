@@ -1,0 +1,10 @@
+@import "../../variable.module.scss";
+
+.container {
+  padding: 1rem 0;
+  background-color: $colorsinspo3;
+  opacity: 0.9;
+  @media only screen and (min-width: 1200px) {
+    margin-top: 1rem;
+  }
+}

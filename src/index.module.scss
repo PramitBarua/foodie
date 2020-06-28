@@ -1,0 +1,71 @@
+@import "./variable.module.scss";
+
+/*global*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 56.25%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  color: $primaryColor;
+  background: linear-gradient(225deg, $colorsinspo2, $colorsinspo1);
+}
+a {
+  text-decoration: none;
+  color: $primaryColor;
+  display: inline-block;
+  text-transform: capitalize;
+}
+h1 {
+  font-size: 3.2rem;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 1.87rem;
+  font-weight: 300;
+}
+/* end of globals */
+
+@media only screen and (min-width: 326px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 70%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 100%;
+  }
+  .app {
+    margin: 2rem auto;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  html {
+    font-size: 120%;
+  }
+}

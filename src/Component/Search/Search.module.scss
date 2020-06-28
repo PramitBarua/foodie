@@ -1,3 +1,38 @@
-.searchInput {
-  border: 1px red solid;
+@import "../../variable.module.scss";
+
+.container {
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 2rem;
+  display: flex;
+  width: 30rem;
+
+  @media only screen and (min-width: 600px) {
+    width: 40rem;
+  }
+  &:focus {
+    box-shadow: $lightShadow;
+  }
+
+  .searchInput {
+    margin-left: 2rem;
+    border: none;
+    border-color: inherit;
+    width: 100%;
+    font-size: 1.2rem;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .searchBtn {
+    border-radius: 2rem;
+    border: none;
+    min-height: 3rem;
+    background: linear-gradient(225deg, $colorsinspo2, $colorsinspo1);
+    padding: 0 2rem;
+    color: $btnColor;
+    font-size: 1.2rem;
+    // flex: 1;
+  }
 }
