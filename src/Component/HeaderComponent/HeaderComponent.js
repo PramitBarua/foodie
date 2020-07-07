@@ -1,6 +1,6 @@
-import React from "react";
-import { Search } from "../index";
-import styles from "./HeaderComponent.module.scss";
+import React from 'react';
+import { Search } from '../index';
+import styles from './HeaderComponent.module.scss';
 
 function HeaderComponent() {
   return (

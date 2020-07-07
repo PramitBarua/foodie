@@ -1,41 +1,42 @@
-import React from "react";
-import { shallow } from "enzyme";
-import Search from "./Search";
+import React from 'react';
+import { Search } from './Search';
+import { render, screen, fireEvent } from '@testing-library/react';
 
-const fakeData = {
-  count: 2,
-  recipes: [
-    {
-      publisher: "test publisher 1",
-      title: "test title 1",
-      source_url: "http://example.com/",
-      recipe_id: "c82994",
-      image_url: "http://example.com/test_image1.jpg",
-      social_rank: 98.80509471559378,
-      publisher_url: "http://examplepublisher1.com/",
-    },
-    {
-      publisher: "test publisher 2",
-      title: "test title 2",
-      source_url: "http://example2.com/",
-      recipe_id: "c82993",
-      image_url: "http://example.com/test_image2.jpg",
-      social_rank: 97,
-      publisher_url: "http://examplepublisher2.com/",
-    },
-  ],
-};
+const searchText = 'pizza';
+const changeSearchText = jest.fn();
+const getAllRecipe = jest.fn();
 
-describe("Search Component", () => {
-  const component = shallow(<Search />);
+let searchBtn, searchInput;
 
-  it("Should have a search input field", () => {
-    const wrapper = component.find(`[data-test='searchInput']`);
-    expect(wrapper.length).toBe(1);
+describe('Search component', () => {
+  beforeEach(() => {
+    render(
+      <Search
+        searchText={searchText}
+        changeSearchText={changeSearchText}
+        getAllRecipe={getAllRecipe}
+      />
+    );
+    searchInput = screen.queryByRole('textbox');
+    searchBtn = screen.queryByRole('button');
   });
 
-  it("Should have a search button", () => {
-    const wrapper = component.find(`[data-test='searchBtn']`);
-    expect(wrapper.length).toBe(1);
+  it('Should have a input field', () => {
+    expect(searchInput).toBeInTheDocument();
+  });
+
+  it('should change input value', () => {
+    fireEvent.change(searchInput, { target: { value: 'pasta' } });
+    expect(changeSearchText).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should have a Search button', () => {
+    expect(searchBtn).toBeInTheDocument();
+    expect(searchBtn).toHaveTextContent(/search/i);
+  });
+
+  it('should emit get request', () => {
+    fireEvent.submit(searchBtn);
+    expect(getAllRecipe).toHaveBeenCalledTimes(1);
   });
 });
