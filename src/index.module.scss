@@ -18,6 +18,9 @@ body {
   color: $primaryColor;
   background: linear-gradient(225deg, $colorsinspo2, $colorsinspo1);
 }
+button {
+  font-family: inherit;
+}
 a {
   text-decoration: none;
   color: $primaryColor;

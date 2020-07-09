@@ -2,29 +2,37 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   z-index: -99;
 
   video {
     display: block;
     position: absolute;
+    // height: 100vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 }
-@media screen and (max-aspect-ratio: 4096/2160) {
-  .video-container {
+// @media screen and (max-aspect-ratio: 4096/2160) {
+//   .video-container {
+//     video {
+//       height: 100%;
+//     }
+//   }
+// }
+// @media screen and (min-aspect-ratio: 4096/2160) {
+//   .video-container {
+//     video {
+//       width: 100%;
+//     }
+//   }
+// }
+@media only screen and (min-width: 1900px) {
+  .videoContainer {
     video {
-      height: 100%;
-    }
-  }
-}
-@media screen and (min-aspect-ratio: 4096/2160) {
-  .video-container {
-    video {
-      width: 100%;
+      width: 100vw;
     }
   }
 }
