@@ -3,7 +3,6 @@ import {
   SEARCH_RECIPES_REQUEST,
   SEARCH_RECIPES_SUCCESS,
   SEARCH_RECIPES_FAILURE,
-  CHANGE_SEARCH_TEXT,
 } from './ActionTypes';
 
 function fetchRequest() {

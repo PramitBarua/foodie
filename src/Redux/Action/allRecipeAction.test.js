@@ -2,9 +2,8 @@ import {
   SEARCH_RECIPES_REQUEST,
   SEARCH_RECIPES_SUCCESS,
   SEARCH_RECIPES_FAILURE,
-  CHANGE_SEARCH_TEXT,
 } from './ActionTypes';
-import { getAllRecipe, changeSearchText } from './allRecipeAction';
+import { getAllRecipe } from './allRecipeAction';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
