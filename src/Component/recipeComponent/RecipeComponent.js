@@ -3,8 +3,17 @@ import InstructionComponent from './instructionComponent/InstructionComponent';
 
 function recipeComponent(props) {
   const { recipeData, loading, error } = props;
+
   let content = null;
-  if (recipeData.id) {
+
+  if (loading) {
+    content = <h3 data-testid="component-loading">Data is loading</h3>;
+  } else if (error !== '') {
+    content = <h3 data-testid="component-error">{error}</h3>;
+  } else if (
+    Object.keys(recipeData).length > 1 &&
+    recipeData.constructor === Object
+  ) {
     const {
       title,
       summary,
@@ -57,7 +66,7 @@ function recipeComponent(props) {
     );
   }
 
-  return <div>{content}</div>;
+  return <div data-testid="recipe-component">{content}</div>;
 }
 
 export default recipeComponent;

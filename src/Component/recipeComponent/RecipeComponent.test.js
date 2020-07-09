@@ -4,6 +4,27 @@ import { findByTestAttr } from '../../test/testUtils';
 import RecipeComponent from './RecipeComponent';
 
 describe('recipe component', () => {
+  describe('when app starts', () => {
+    let wrapper;
+    const initialState = {
+      recipeData: {},
+      loading: false,
+      error: '',
+    };
+
+    beforeEach(() => {
+      wrapper = shallow(<RecipeComponent {...initialState} />);
+    });
+
+    it('the component should render `nothing`', () => {
+      const component = findByTestAttr(wrapper, 'recipe-component');
+      expect(component.children().exists()).toBe(false);
+    });
+  });
+
+  /**
+   * when data is present and component should display the desire elements
+   */
   describe('render when recipeData is present', () => {
     const initialState = {
       recipeData: {
@@ -39,47 +60,198 @@ describe('recipe component', () => {
     beforeEach(() => {
       wrapper = shallow(<RecipeComponent {...initialState} />);
     });
-    // it('should render without error', () => {});
-    it('should contains title', () => {
+    it('the component should render without error', () => {
+      const component = findByTestAttr(wrapper, 'recipe-component');
+      expect(component.children().exists()).toBe(true);
+    });
+
+    it('should not render loading screen', () => {
+      const component = findByTestAttr(wrapper, 'component-loading');
+      expect(component.length).toBe(0);
+    });
+    it('should not render error message', () => {
+      const component = findByTestAttr(wrapper, 'component-error');
+      expect(component.length).toBe(0);
+    });
+    it('should contain title', () => {
       const title = findByTestAttr(wrapper, 'component-title');
       expect(title.length).toBe(1);
     });
 
-    it('should contians a summary', () => {
+    it('should contian a summary', () => {
       const component = findByTestAttr(wrapper, 'component-summary');
       expect(component.length).toBe(1);
     });
 
-    it('should contains an image', () => {
+    it('should contain an image', () => {
       const component = findByTestAttr(wrapper, 'component-image');
       expect(component.length).toBe(1);
     });
 
-    it('should contains serving', () => {
+    it('should contain serving', () => {
       const component = findByTestAttr(wrapper, 'component-servings');
       expect(component.length).toBe(1);
     });
 
-    it('should contains cooking time', () => {
+    it('should contain cooking time', () => {
       const component = findByTestAttr(wrapper, 'component-readyInMinutes');
       expect(component.length).toBe(1);
     });
 
-    it('should contains ingradient list', () => {
+    it('should contain ingradient list', () => {
       const component = findByTestAttr(wrapper, 'component-ingradient');
       expect(component.length).toBe(initialState.recipeData.ingradients.length);
     });
 
-    it('should contains instruction component', () => {
+    it('should contain instruction component', () => {
       const component = findByTestAttr(wrapper, 'component-instruction');
       expect(component.length).toBe(
         initialState.recipeData.instructions.length
       );
     });
 
-    it('should contains source link', () => {
+    it('should contain source link', () => {
       const component = findByTestAttr(wrapper, 'component-source');
       expect(component.length).toBe(1);
+    });
+  });
+
+  /**
+   * when data is loading from API loading message/spin should appear
+   */
+  describe('when data is loading', () => {
+    const initialState = {
+      recipeData: {},
+      loading: true,
+      error: '',
+    };
+
+    let wrapper;
+    beforeEach(() => {
+      wrapper = shallow(<RecipeComponent {...initialState} />);
+    });
+
+    it('the component should render without error', () => {
+      const component = findByTestAttr(wrapper, 'recipe-component');
+      expect(component.children().exists()).toBe(true);
+    });
+
+    it('should render loading screen', () => {
+      const component = findByTestAttr(wrapper, 'component-loading');
+      expect(component.length).toBe(1);
+    });
+
+    it('should not render error message', () => {
+      const component = findByTestAttr(wrapper, 'component-error');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain title', () => {
+      const title = findByTestAttr(wrapper, 'component-title');
+      expect(title.length).toBe(0);
+    });
+
+    it('should not contian a summary', () => {
+      const component = findByTestAttr(wrapper, 'component-summary');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain an image', () => {
+      const component = findByTestAttr(wrapper, 'component-image');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain serving', () => {
+      const component = findByTestAttr(wrapper, 'component-servings');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain cooking time', () => {
+      const component = findByTestAttr(wrapper, 'component-readyInMinutes');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain ingradient list', () => {
+      const component = findByTestAttr(wrapper, 'component-ingradient');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain instruction component', () => {
+      const component = findByTestAttr(wrapper, 'component-instruction');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain source link', () => {
+      const component = findByTestAttr(wrapper, 'component-source');
+      expect(component.length).toBe(0);
+    });
+  });
+
+  describe('when there is an error', () => {
+    const initialState = {
+      recipeData: {},
+      loading: false,
+      error: 'Something went wrong, please try again later.',
+    };
+
+    let wrapper;
+    beforeEach(() => {
+      wrapper = shallow(<RecipeComponent {...initialState} />);
+    });
+
+    it('the component should render without error', () => {
+      const component = findByTestAttr(wrapper, 'recipe-component');
+      expect(component.children().exists()).toBe(true);
+    });
+
+    it('should render error message', () => {
+      const component = findByTestAttr(wrapper, 'component-error');
+      expect(component.length).toBe(1);
+    });
+
+    it('should not render loading screen', () => {
+      const component = findByTestAttr(wrapper, 'component-loading');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain title', () => {
+      const title = findByTestAttr(wrapper, 'component-title');
+      expect(title.length).toBe(0);
+    });
+
+    it('should not contian a summary', () => {
+      const component = findByTestAttr(wrapper, 'component-summary');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain an image', () => {
+      const component = findByTestAttr(wrapper, 'component-image');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain serving', () => {
+      const component = findByTestAttr(wrapper, 'component-servings');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain cooking time', () => {
+      const component = findByTestAttr(wrapper, 'component-readyInMinutes');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain ingradient list', () => {
+      const component = findByTestAttr(wrapper, 'component-ingradient');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain instruction component', () => {
+      const component = findByTestAttr(wrapper, 'component-instruction');
+      expect(component.length).toBe(0);
+    });
+
+    it('should not contain source link', () => {
+      const component = findByTestAttr(wrapper, 'component-source');
+      expect(component.length).toBe(0);
     });
   });
 });
