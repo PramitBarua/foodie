@@ -6,9 +6,9 @@ import {
 } from '../Action/ActionTypes';
 
 const initialState = {
-  // loading: false,
-  // allRecipes: {},
-  // error: '',
+  loading: false,
+  data: [],
+  error: '',
 };
 
 describe('recipe Reducer', () => {
@@ -18,9 +18,11 @@ describe('recipe Reducer', () => {
     expect(reducer).toEqual({});
   });
 
-  it('should request recipe from API', () => {
+  it('when `SEARCH_RECIPES_REQUEST` action is dispatch', () => {
     const newState = {
       loading: true,
+      data: [],
+      error: '',
     };
 
     const reducer = allRecipeReducer(initialState, {
@@ -30,21 +32,54 @@ describe('recipe Reducer', () => {
     expect(reducer).toEqual(newState);
   });
 
-  it('should update recipes when SEARCH_RECIPES_SUCCESS action is dispatched', () => {
+  it('when `SEARCH_RECIPES_SUCCESS` action is dispatch', () => {
     const APIres = {
-      count: 3,
-      recipes: [{ title: 'test 1' }, { title: 'test 2' }, { title: 'test 3' }],
+      results: [
+        {
+          id: 150032,
+          title: 'Tapioca Pudding with Coconut Cream and Palm-Sugar Syrup',
+          image: 'https://spoonacular.com/recipeImages/150032-312x231.jpg',
+          imageType: 'jpg',
+        },
+        {
+          id: 157539,
+          title: 'Coconut Panna Cotta with Passionfruit and Mangoes',
+          image: 'https://spoonacular.com/recipeImages/157539-312x231.jpg',
+          imageType: 'jpg',
+        },
+        {
+          id: 53928,
+          title: 'Hand-tossed Coconut-lime Sorbet In Sugar-dusted Wonton Cups',
+          image: 'https://spoonacular.com/recipeImages/53928-312x231.jpg',
+          imageType: 'jpg',
+        },
+      ],
+      offset: 0,
+      number: 3,
+      totalResults: 5691,
     };
 
     const newState = {
-      allRecipes: {
-        count: 3,
-        recipes: [
-          { title: 'test 1' },
-          { title: 'test 2' },
-          { title: 'test 3' },
-        ],
-      },
+      data: [
+        {
+          id: 150032,
+          title: 'Tapioca Pudding with Coconut Cream and Palm-Sugar Syrup',
+          image: 'https://spoonacular.com/recipeImages/150032-312x231.jpg',
+          imageType: 'jpg',
+        },
+        {
+          id: 157539,
+          title: 'Coconut Panna Cotta with Passionfruit and Mangoes',
+          image: 'https://spoonacular.com/recipeImages/157539-312x231.jpg',
+          imageType: 'jpg',
+        },
+        {
+          id: 53928,
+          title: 'Hand-tossed Coconut-lime Sorbet In Sugar-dusted Wonton Cups',
+          image: 'https://spoonacular.com/recipeImages/53928-312x231.jpg',
+          imageType: 'jpg',
+        },
+      ],
       error: '',
       loading: false,
     };
@@ -56,11 +91,11 @@ describe('recipe Reducer', () => {
     expect(reducer).toEqual(newState);
   });
 
-  it('should return error when API request fails', () => {
+  it('when `SEARCH_RECIPES_FAILURE` action is dispatch', () => {
     const errorMsg = 'Something went wrong';
 
     const newState = {
-      allRecipes: {},
+      data: [],
       error: 'Something went wrong',
       loading: false,
     };
@@ -72,4 +107,3 @@ describe('recipe Reducer', () => {
     expect(reducer).toEqual(newState);
   });
 });
-// it("", () => {});

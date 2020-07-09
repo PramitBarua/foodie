@@ -3,7 +3,7 @@ import {
   SEARCH_RECIPES_SUCCESS,
   SEARCH_RECIPES_FAILURE,
 } from './ActionTypes';
-import { getAllRecipe } from './allRecipeAction';
+import { getAllRecipe } from './getAllRecipeAction';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';

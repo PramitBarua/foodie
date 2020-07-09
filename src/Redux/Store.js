@@ -6,16 +6,18 @@ const initialState = {
   searchText: '',
   recipes: {
     loading: false,
-    allRecipes: {
-      number: 0,
-      offset: 0,
-      results: [],
-      totalResults: 0,
-    },
+    data: [],
     error: '',
   },
+  // recipe: {
+  //   loading: false,
+  //   data: {},
+  //   error: '',
+  // },
 };
 
-const Store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
-export default Store;
+// console.log(store.getState());
+
+export default store;

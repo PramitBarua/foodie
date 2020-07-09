@@ -10,13 +10,15 @@ const allRecipeReducer = (state = {}, action) => {
       return {
         ...state,
         loading: true,
+        data: [],
+        error: '',
       };
 
     case SEARCH_RECIPES_SUCCESS:
       return {
         ...state,
         loading: false,
-        allRecipes: action.body,
+        data: action.body.results,
         error: '',
       };
 
@@ -24,7 +26,7 @@ const allRecipeReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
-        allRecipes: {},
+        data: [],
         error: action.error,
       };
 

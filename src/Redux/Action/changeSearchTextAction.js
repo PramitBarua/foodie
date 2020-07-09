@@ -5,9 +5,9 @@ import { CHANGE_SEARCH_TEXT } from './ActionTypes';
  * @param {string} text - string typeed by the user in search field
  * @returns {object} - action object with type `CHANGE_SEARCH_TEXT` and text that user typed in search field
  */
-export const changeSearchText = (text = '') => {
+export const changeSearchText = (searchText = '') => {
   return {
     type: CHANGE_SEARCH_TEXT,
-    text,
+    searchText,
   };
 };

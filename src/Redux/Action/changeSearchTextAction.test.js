@@ -5,18 +5,18 @@ describe('testing changeSearchText()', () => {
   it('should return default (empty string)', () => {
     expect(changeSearchText(undefined)).toEqual({
       type: CHANGE_SEARCH_TEXT,
-      text: '',
+      searchText: '',
     });
   });
 
   it('should return the text', () => {
-    const text = 'pizza';
+    const searchText = 'pizza';
 
     const expectedAction = {
       type: CHANGE_SEARCH_TEXT,
-      text: text,
+      searchText: searchText,
     };
 
-    expect(changeSearchText(text)).toEqual(expectedAction);
+    expect(changeSearchText(searchText)).toEqual(expectedAction);
   });
 });

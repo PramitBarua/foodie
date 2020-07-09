@@ -1,2 +1,2 @@
-export { getAllRecipe } from './allRecipeAction';
+export { getAllRecipe } from './getAllRecipeAction';
 export { changeSearchText } from './changeSearchTextAction';

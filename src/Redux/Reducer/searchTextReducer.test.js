@@ -1,5 +1,5 @@
 import searchTextReducer from './searchTextReducer';
-import { SEARCH_TEXT } from '../Action/ActionTypes';
+import { CHANGE_SEARCH_TEXT } from '../Action/ActionTypes';
 
 describe('search text reducer', () => {
   it('should return default state', () => {
@@ -8,10 +8,13 @@ describe('search text reducer', () => {
     expect(reducer).toEqual('');
   });
 
-  it('should return typed text', () => {
-    const text = 'pasta';
-    const reducer = searchTextReducer('', { type: SEARCH_TEXT, text: text });
+  it('should return searched text', () => {
+    const searchText = 'pasta';
+    const reducer = searchTextReducer('', {
+      type: CHANGE_SEARCH_TEXT,
+      searchText: searchText,
+    });
 
-    expect(reducer).toEqual(text);
+    expect(reducer).toEqual(searchText);
   });
 });
