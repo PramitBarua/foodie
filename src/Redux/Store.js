@@ -18,6 +18,6 @@ const initialState = {
 
 const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
-// console.log(store.getState());
+// console.log('in store', store.getState());
 
 export default store;

@@ -45,9 +45,9 @@ export function Search({ searchText, changeSearchText, getAllRecipe }) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ searchText }) => {
   return {
-    searchText: state.searchText,
+    searchText,
   };
 };
 

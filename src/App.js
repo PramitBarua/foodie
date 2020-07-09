@@ -4,7 +4,10 @@ import { HeaderComponent, BackgroundVideoComponent } from './Component/index';
 import { connect } from 'react-redux';
 // import { useEffect } from 'react';
 
+// import store from './Redux/Store';
+
 export function App({ amountAllRecipes }) {
+  // console.log('app component', store.getState());
   return (
     <div className={styles.app}>
       <BackgroundVideoComponent />
@@ -13,11 +16,11 @@ export function App({ amountAllRecipes }) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ recipes }) => {
   return {
-    amountAllRecipes: state.recipes.allRecipes.results.length,
-    loadingAllRecipes: state.recipes.loading,
-    errorAllRecipes: state.recipes.error,
+    amountAllRecipes: recipes.data.length,
+    loadingAllRecipes: recipes.loading,
+    errorAllRecipes: recipes.error,
   };
 };
 
