@@ -2,7 +2,7 @@ import {
   SEARCH_RECIPES_REQUEST,
   SEARCH_RECIPES_SUCCESS,
   SEARCH_RECIPES_FAILURE,
-  SEARCH_TEXT,
+  CHANGE_SEARCH_TEXT,
 } from './ActionTypes';
 import { getAllRecipe, changeSearchText } from './allRecipeAction';
 import configureStore from 'redux-mock-store';
@@ -89,25 +89,5 @@ describe('Testing loadAllRecipe()', () => {
     store.dispatch(getAllRecipe('not an api')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
-  });
-});
-
-describe('testing changeSearchText()', () => {
-  it('should return default', () => {
-    expect(store.dispatch(changeSearchText(undefined))).toEqual({
-      type: SEARCH_TEXT,
-      text: '',
-    });
-  });
-
-  it('should return the text', () => {
-    const text = 'pizza';
-
-    const expectedAction = {
-      type: SEARCH_TEXT,
-      text: text,
-    };
-
-    expect(store.dispatch(changeSearchText(text))).toEqual(expectedAction);
   });
 });

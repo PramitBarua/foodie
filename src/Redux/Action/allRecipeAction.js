@@ -3,7 +3,7 @@ import {
   SEARCH_RECIPES_REQUEST,
   SEARCH_RECIPES_SUCCESS,
   SEARCH_RECIPES_FAILURE,
-  SEARCH_TEXT,
+  CHANGE_SEARCH_TEXT,
 } from './ActionTypes';
 
 function fetchRequest() {
@@ -25,13 +25,6 @@ function fetchFailure(error) {
     error,
   };
 }
-
-export const changeSearchText = (text = '') => {
-  return {
-    type: SEARCH_TEXT,
-    text,
-  };
-};
 
 export const getAllRecipe = (apiEndpoint) => (dispatch) => {
   dispatch(fetchRequest());
