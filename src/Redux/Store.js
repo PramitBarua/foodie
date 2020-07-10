@@ -5,8 +5,9 @@ import rootReducer from './Reducer/rootReducer';
 const initialState = {
   searchText: '',
   recipes: {
+    // contains the recipe info for list component
     loading: false,
-    data: [],
+    data: [], // [{ id:"", title:'', image:"", imageType:"" }...]
     error: '',
   },
   // recipe: {

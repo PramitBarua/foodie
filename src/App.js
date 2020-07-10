@@ -7,15 +7,19 @@ import ListComponent from './Component/listComponent/ListComponent';
 
 // import store from './Redux/Store';
 
-export function App({ allRecipes }) {
+function App({ allRecipes }) {
   // console.log('app component', store.getState());
   return (
     <>
-      <BackgroundVideoComponent />
+      <BackgroundVideoComponent data-testid="background-component" />
       <div className={styles.app}>
-        <HeaderComponent />
-        {allRecipes.length > 0 ? (
-          <ListComponent recipes={allRecipes} onClick={null} />
+        <HeaderComponent data-testid="header-component" />
+        {allRecipes && allRecipes.length > 0 ? (
+          <ListComponent
+            data-testid="list-component"
+            recipes={allRecipes}
+            onClick={null}
+          />
         ) : null}
       </div>
     </>
