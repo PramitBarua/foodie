@@ -5,9 +5,9 @@ import rootReducer from './Reducer/rootReducer';
 const initialState = {
   searchText: '',
   recipes: {
-    // contains the recipe info for list component
+    // contains the recipes info for list component
     loading: false,
-    data: [], // [{ id:"", title:'', image:"", imageType:"" }...]
+    data: [], // [{ id: number, title: string, image: string URL, imageType: string }...]
     error: '',
   },
   // recipe: {
@@ -17,7 +17,13 @@ const initialState = {
   // },
 };
 
-const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+export const middleware = [thunk];
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(...middleware)
+);
 
 // console.log('in store', store.getState());
 

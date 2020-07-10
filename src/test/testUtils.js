@@ -1,5 +1,6 @@
 import rootReducer from '../Redux/Reducer/rootReducer';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { middleware } from '../Redux/Store';
 
 /**
  * Create a testing store with imported reducers, middleware, and initial state.
@@ -9,7 +10,7 @@ import { createStore } from 'redux';
  * @returns {Store} - Redux store.
  */
 export const storeFactory = (initialState) => {
-  return createStore(rootReducer, initialState);
+  return createStore(rootReducer, initialState, applyMiddleware(...middleware));
 };
 
 /**

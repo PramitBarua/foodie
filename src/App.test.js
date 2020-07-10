@@ -6,11 +6,11 @@ import { findByTestAttr, storeFactory } from './test/testUtils';
 
 const setup = (initialState) => {
   const store = storeFactory(initialState);
-  console.log(store.getState());
+
   const wrapper = shallow(<App store={store} />)
     .dive()
     .dive();
-  console.log(wrapper.debug());
+  // console.log(wrapper.debug());
   return wrapper;
 };
 
