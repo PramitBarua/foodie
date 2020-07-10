@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './App.module.scss';
-import { HeaderComponent, BackgroundVideoComponent } from './Component/index';
+import {
+  HeaderComponent,
+  BackgroundVideoComponent,
+  ListComponent,
+} from './Component/index';
 import { connect } from 'react-redux';
-import ListComponent from './Component/listComponent/ListComponent';
+
 // import { useEffect } from 'react';
 
 // import store from './Redux/Store';
