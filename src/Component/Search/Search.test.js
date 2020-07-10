@@ -1,66 +1,59 @@
 import React from 'react';
-import { Search } from './Search';
-// import { render, screen, fireEvent } from '@testing-library/react';
+import { shallow } from 'enzyme';
+import Search, { UnconnectedSearch } from './Search';
+import { findByTestAttr, storeFactory } from '../../test/testUtils';
 
-import { shallow, mount } from 'enzyme';
+const setup = (initialState) => {
+  const store = storeFactory(initialState);
 
-const searchText = 'pizza';
-const changeSearchText = jest.fn();
-const getAllRecipe = jest.fn();
+  const wrapper = shallow(<Search store={store} />)
+    .dive()
+    .dive();
+  // console.log(wrapper.debug());
+  return wrapper;
+};
 
-let wrapper, searchBtn, searchInput;
-
-// describe('Search component', () => {
-//   beforeEach(() => {
-//     render(
-//       <Search
-//         searchText={searchText}
-//         changeSearchText={changeSearchText}
-//         getAllRecipe={getAllRecipe}
-//       />
-//     );
-//     searchInput = screen.queryByRole('textbox');
-//     searchBtn = screen.queryByRole('button');
-//   });
-
-//   it('Should have a input field', () => {
-//     expect(searchInput).toBeInTheDocument();
-//   });
-
-//   it('should change input value', () => {
-//     fireEvent.change(searchInput, { target: { value: 'pasta' } });
-//     expect(changeSearchText).toHaveBeenCalledTimes(1);
-//   });
-
-//   it('Should have a Search button', () => {
-//     expect(searchBtn).toBeInTheDocument();
-//     expect(searchBtn).toHaveTextContent(/search/i);
-//   });
-
-//   it('should emit get request', () => {
-//     fireEvent.submit(searchBtn);
-//     expect(getAllRecipe).toHaveBeenCalledTimes(1);
-//   });
-// });
-
-describe('search component', () => {
+describe('render Search component', () => {
+  let wrapper;
   beforeEach(() => {
-    wrapper = shallow(
-      <Search
-        searchText={searchText}
-        changeSearchText={changeSearchText}
-        getAllRecipe={getAllRecipe}
-      />
-    );
-    searchInput = wrapper.find('input');
-    searchBtn = wrapper.find('button');
+    wrapper = setup();
   });
-  it('Should have a input field', () => {
-    expect(searchInput).toBeTruthy();
+  it('should have a input field', () => {
+    const element = findByTestAttr(wrapper, 'input-element');
+    expect(element.length).toBe(1);
+  });
+  it('should have a submit button', () => {
+    const element = findByTestAttr(wrapper, 'button-element');
+    expect(element.length).toBe(1);
+  });
+});
+
+describe('redux props', () => {
+  it('has `searchText` as props', () => {
+    const input = 'pizza';
+    const wrapper = setup({ searchText: input });
+    expect(wrapper.instance().props.searchText).toBe(input);
   });
 
-  it('should change input value', () => {
-    searchInput.simulate('change', { target: { value: 'pasta' } });
-    expect(changeSearchText).toHaveBeenCalledTimes(1);
+  it('`changeSearchText` action creater is a function prop', () => {
+    const wrapper = setup();
+    expect(wrapper.instance().props.changeSearchText).toBeInstanceOf(Function);
+  });
+
+  it('`getAllRecipe` action creater is a function prop', () => {
+    const wrapper = setup();
+    expect(wrapper.instance().props.getAllRecipe).toBeInstanceOf(Function);
+  });
+});
+
+describe('search component functionality', () => {
+  it('dispatch `getAllRecipe` when submit button is clicked', () => {
+    const mockGetAllRecipe = jest.fn();
+    const wrapper = shallow(
+      <UnconnectedSearch getAllRecipe={mockGetAllRecipe} />
+    );
+    const element = findByTestAttr(wrapper, 'form-element');
+    element.simulate('submit', { preventDefault() {} });
+    expect(mockGetAllRecipe.mock.calls.length).toBe(1);
   });
 });
