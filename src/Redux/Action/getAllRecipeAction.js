@@ -33,6 +33,6 @@ export const getAllRecipe = (apiEndpoint) => (dispatch) => {
       dispatch(fetchSuccess(response.data));
     })
     .catch((error) => {
-      dispatch(fetchFailure(error));
+      dispatch(fetchFailure(error.response.data));
     });
 };

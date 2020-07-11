@@ -4,7 +4,7 @@ import {
   SEARCH_SINGLE_RECIPE_FAILURE,
 } from '../Action/ActionTypes';
 
-import { parsingSingleRecipe } from '../../helpers/parsingSingleRecipe';
+import { parsingSingleRecipe } from '../../helpers';
 
 const singleRecipeReducer = (state = {}, action) => {
   switch (action.type) {

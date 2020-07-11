@@ -3,24 +3,13 @@ import { connect } from 'react-redux';
 import styles from './Search.module.scss';
 import { changeSearchText, getAllRecipe } from '../../Redux/Action';
 
+import { allRecipeUrl } from '../../helpers';
+
 export class UnconnectedSearch extends Component {
   handleSearchBtnClick(e, searchText, getAllRecipe) {
     if (searchText !== '') {
       e.preventDefault();
-
-      const param = [
-        { name: 'number', value: 30 },
-        { name: 'sort', value: 'popularity' },
-        { name: 'sortDirection', value: 'asc' },
-        { name: 'query', value: searchText },
-      ];
-
-      let url = `${process.env.REACT_APP_BASE_URL}/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}`;
-
-      url = param.reduce((acc, cur) => {
-        return acc + `&${cur.name}=${cur.value}`;
-      }, url);
-
+      const url = allRecipeUrl(searchText);
       getAllRecipe(url);
     }
   }

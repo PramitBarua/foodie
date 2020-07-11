@@ -25,6 +25,7 @@
     font-size: 1rem;
     font-weight: 300;
     background-color: $colorsinspo3;
+    color: black;
     opacity: 0.9;
     position: relative;
     transform: translateZ(0);
@@ -49,6 +50,7 @@
     }
   }
   & img {
+    display: block;
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
@@ -56,5 +58,43 @@
   & .title {
     width: 100%;
     text-align: center;
+  }
+}
+
+.imageLoading {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  background-color: #333;
+
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+  animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+.imageLoaded {
+  display: none;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
   }
 }

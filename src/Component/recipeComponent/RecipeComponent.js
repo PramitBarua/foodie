@@ -32,11 +32,11 @@ function recipeComponent(props) {
         <div>
           <div data-testid="component-servings">
             <span>Servings</span>
-            <span>{servings}</span>
+            <span>{isNaN(servings) ? '-' : servings}</span>
           </div>
           <div data-testid="component-readyInMinutes">
             <span>Time</span>
-            <span>{readyInMinutes}</span>
+            <span>{isNaN(readyInMinutes) ? '-' : readyInMinutes}</span>
           </div>
         </div>
         <div>

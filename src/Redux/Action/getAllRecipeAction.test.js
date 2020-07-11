@@ -76,13 +76,29 @@ describe('Testing loadAllRecipe()', () => {
   });
 
   it('when api call fails', () => {
-    mock.onGet('not an api').reply(400, {});
+    mock.onGet('not an api').reply(400, {
+      response: {
+        data: {
+          message: 'Request failed with status code 400',
+        },
+        status: 'failure',
+        code: 400,
+      },
+    });
 
     let expectedActions = [
       { type: SEARCH_RECIPES_REQUEST },
       {
         type: SEARCH_RECIPES_FAILURE,
-        error: new Error('Request failed with status code 400'),
+        error: {
+          response: {
+            data: {
+              message: 'Request failed with status code 400',
+            },
+            status: 'failure',
+            code: 400,
+          },
+        },
       },
     ];
     store.dispatch(getAllRecipe('not an api')).then(() => {

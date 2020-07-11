@@ -1,4 +1,4 @@
-import { parsingSingleRecipe } from '../helpers/parsingSingleRecipe';
+import { parsingSingleRecipe } from '../helpers';
 
 export const singleRecipeResponse = {
   vegetarian: false,

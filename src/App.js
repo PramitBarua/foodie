@@ -1,33 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './App.module.scss';
 import {
   HeaderComponent,
   BackgroundVideoComponent,
   ListComponent,
+  LoadingComponent,
+  ErrorComponent,
 } from './Component/index';
 import { connect } from 'react-redux';
 
-// import { useEffect } from 'react';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listComponentImageLoaded: false,
+    };
+  }
 
-// import store from './Redux/Store';
+  render() {
+    const { allRecipes, loadingAllRecipes, errorAllRecipes } = this.props;
 
-function App({ allRecipes }) {
-  // console.log('app component', store.getState());
-  return (
-    <>
-      <BackgroundVideoComponent data-testid="background-component" />
-      <div className={styles.app}>
-        <HeaderComponent data-testid="header-component" />
-        {allRecipes && allRecipes.length > 0 ? (
-          <ListComponent
-            data-testid="list-component"
-            recipes={allRecipes}
-            onClick={null}
-          />
-        ) : null}
-      </div>
-    </>
-  );
+    // console.log(errorAllRecipes);
+    let listContent = null;
+    // let recipeContent = null;
+
+    if (loadingAllRecipes) {
+      listContent = <LoadingComponent />;
+    } else if (errorAllRecipes !== '') {
+      listContent = <ErrorComponent code={errorAllRecipes.code} />;
+    } else if (allRecipes && allRecipes.length > 0) {
+      listContent = (
+        <ListComponent
+          data-testid="list-component"
+          recipes={allRecipes}
+          onClick={null}
+        />
+      );
+    }
+
+    return (
+      <>
+        <BackgroundVideoComponent data-testid="background-component" />
+        <div className={styles.app}>
+          <HeaderComponent data-testid="header-component" />
+          {listContent}
+        </div>
+      </>
+    );
+  }
 }
 
 const mapStateToProps = ({ recipes }) => {
