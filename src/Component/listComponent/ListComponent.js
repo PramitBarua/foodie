@@ -28,7 +28,7 @@ function ListComponent({ recipes, onClick }) {
             className={imageLoading ? styles.imageLoading : styles.imageLoaded}
           ></div>
           <img
-            className={imageLoading ? styles.imageLoaded : null}
+            className={imageLoading ? styles.imageLoaded : styles.displayImage}
             data-testid="recipe-image"
             src={recipe.image}
             alt={recipe.title}
