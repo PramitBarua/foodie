@@ -4,10 +4,19 @@ import styles from './ErrorComponenet.module.scss';
 function ErrorComponent({ code }) {
   let content = null;
   if (code === 402) {
-    content = `The daily API limit has expired. Please contact`;
+    content = (
+      <span>
+        The daily API limit has expired. <br /> If this error persists, please
+        contact;
+      </span>
+    );
   } else {
-    content = `We're so sorry, something went wrong. If this error persists, please
-        contact`;
+    content = (
+      <span>
+        We're so sorry, something went wrong. <br /> If this error persists,
+        please contact
+      </span>
+    );
   }
   return (
     <div className={styles.container}>

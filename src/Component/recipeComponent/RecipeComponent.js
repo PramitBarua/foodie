@@ -80,7 +80,7 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
       </div>
 
       <div className={styles.section}>
-        <div>
+        <div className={styles.ingredients}>
           <h2>Ingredients</h2>
           <ul>
             {ingredients.map((ingradient, index) => (
@@ -90,7 +90,7 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
             ))}
           </ul>
         </div>
-        <div>
+        <div className={styles.instruction}>
           <h2>Instructions</h2>
           {instructions.map((instruction, instIndex) => {
             return (

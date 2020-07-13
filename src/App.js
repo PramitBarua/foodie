@@ -8,6 +8,7 @@ import {
   RecipeComponent,
   LoadingComponent,
   ErrorComponent,
+  Footer,
 } from './Component/index';
 import { getSingleRecipeAction } from './Redux/Action';
 import { singleRecipeUrl } from './helpers/getUrl';
@@ -127,6 +128,7 @@ class App extends Component {
               {recipeContent}
             </div>
           ) : null}
+          <Footer />
         </div>
       </>
     );

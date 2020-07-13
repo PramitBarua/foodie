@@ -2,7 +2,7 @@
 .container {
   width: 100%;
   padding: 2rem;
-  max-height: 85vh;
+  max-height: 70vh;
   overflow-y: scroll;
   background-color: $colorsinspo3;
   opacity: 0.9;
@@ -23,15 +23,10 @@
 .section {
   display: flex;
   margin-top: 2rem;
-  & div {
-    width: 100%;
-  }
+  justify-content: space-between;
   & ul {
     list-style: none;
-    width: 100%;
-    padding-right: 1.5rem;
     & li {
-      text-align: justify;
       font-size: 1.2rem;
       margin-bottom: 0.3rem;
     }
@@ -59,6 +54,15 @@
       border-right: none;
     }
   }
+}
+
+.ingredients {
+  width: 100%;
+  margin-right: 1.5rem;
+}
+
+.instruction {
+  width: 100%;
 }
 
 .source {

@@ -23,9 +23,17 @@ button {
 }
 a {
   text-decoration: none;
-  color: $colorsinspo1;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  border: none;
+  margin: 0.5rem 0;
+  background: linear-gradient(225deg, #22d1ee, #3d5af1);
+  color: $offWhite;
   display: inline-block;
   text-transform: capitalize;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 h1 {
   // font-size: 3.2rem;
