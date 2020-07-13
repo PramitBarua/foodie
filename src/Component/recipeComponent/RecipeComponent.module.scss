@@ -1,0 +1,63 @@
+@import '../../variable.module.scss';
+.container {
+  width: 100%;
+  padding: 2rem;
+  max-height: 85vh;
+  overflow-y: scroll;
+  background-color: $colorsinspo3;
+  opacity: 0.9;
+  & h1 {
+    font-weight: 400;
+  }
+  & h2 {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  & img {
+    width: 100%;
+  }
+}
+.section {
+  display: flex;
+  margin-top: 2rem;
+  & div {
+    width: 100%;
+  }
+  & ul {
+    list-style: none;
+    width: 100%;
+    padding-right: 1rem;
+    & li {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+.summary {
+  text-align: justify;
+}
+
+.timePart {
+  display: flex;
+  & li {
+    border-right: 2px solid black;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.source {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  & span {
+    margin-right: 0.5rem;
+  }
+}

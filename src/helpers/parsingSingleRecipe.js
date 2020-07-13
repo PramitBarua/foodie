@@ -1,12 +1,15 @@
 const getAppropriateString = (obj, key) => {
-  if (key in obj) {
-    return obj[`${key}`];
+  if (key in obj && obj[`${key}`]) {
+    let content = obj[`${key}`];
+    // remove all html tags
+    content = content.replace(/<\/?[^>]+(>|$)/g, '');
+    return content;
   }
   return '';
 };
 
 const getAppropriateNumber = (obj, key) => {
-  if (key in obj) {
+  if (key in obj && obj[`${key}`]) {
     return obj[`${key}`];
   }
   return NaN;
@@ -14,13 +17,16 @@ const getAppropriateNumber = (obj, key) => {
 
 export const parsingSingleRecipe = (obj) => {
   // get desire value from obj
-  const id = getAppropriateString(obj, 'id');
+  const id = getAppropriateNumber(obj, 'id');
   const title = getAppropriateString(obj, 'title');
   const summary = getAppropriateString(obj, 'summary');
   const image = getAppropriateString(obj, 'image');
   const sourceUrl = getAppropriateString(obj, 'sourceUrl');
+  const sourceName = getAppropriateString(obj, 'sourceName');
   const servings = getAppropriateNumber(obj, 'servings');
   const readyInMinutes = getAppropriateNumber(obj, 'readyInMinutes');
+  const cookingMinutes = getAppropriateNumber(obj, 'cookingMinutes');
+  const preparationMinutes = getAppropriateNumber(obj, 'preparationMinutes');
 
   // create new object
   const newObj = {
@@ -29,8 +35,11 @@ export const parsingSingleRecipe = (obj) => {
     summary,
     image,
     sourceUrl,
+    sourceName,
     servings,
     readyInMinutes,
+    cookingMinutes,
+    preparationMinutes,
   };
 
   newObj['ingredients'] = [];

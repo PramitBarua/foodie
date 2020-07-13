@@ -1,9 +1,12 @@
 import React from 'react';
+import styles from './InstructionComponent.module.scss';
 
 function InstructionComponent({ instructionHeading, steps }) {
   return (
-    <div>
-      <h3 data-testid="component-instruction-title">{instructionHeading}</h3>
+    <div className={styles.container}>
+      {instructionHeading ? (
+        <h3 data-testid="component-instruction-title">{instructionHeading}</h3>
+      ) : null}
       <ul>
         {steps.map((step, stepIndex) => {
           return (

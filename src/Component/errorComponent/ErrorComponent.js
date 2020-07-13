@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ErrorComponenet.module.scss';
 
 function ErrorComponent({ code }) {
   let content = null;
@@ -9,13 +10,11 @@ function ErrorComponent({ code }) {
         contact`;
   }
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h3 data-testid="text-elememt">
-        {content} <br />{' '}
-        <a data-testid="link-elememt" href="https://pramitbarua.com/">
-          the website manager
-        </a>
-      </h3>
+    <div className={styles.container}>
+      <h3 data-testid="text-elememt">{content}</h3>
+      <a data-testid="link-elememt" href="https://pramitbarua.com/">
+        the website manager
+      </a>
     </div>
   );
 }

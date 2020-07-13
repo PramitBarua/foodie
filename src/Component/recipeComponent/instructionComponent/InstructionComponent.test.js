@@ -20,7 +20,11 @@ describe('instruction component', () => {
   });
   it('should contains instruction title when it is present', () => {
     const component = findByTestAttr(wrapper, 'component-instruction-title');
-    expect(component.length).toBe(1);
+    if (initialState.instructionHeading) {
+      expect(component.length).toBe(1);
+    } else {
+      expect(component.length).toBe(0);
+    }
   });
 
   it('should contains instruction steps', () => {

@@ -1,8 +1,8 @@
-@import "../../variable.module.scss";
+@import '../../variable.module.scss';
 
 .container {
   margin: 0 auto;
-  background-color: #fff;
+  background-color: $offWhite;
   border-radius: 2rem;
   display: flex;
   width: 30rem;
@@ -20,6 +20,7 @@
     border-color: inherit;
     width: 100%;
     font-size: 1.2rem;
+    background-color: $offWhite;
     &:focus {
       outline: none;
     }
@@ -31,7 +32,7 @@
     min-height: 3rem;
     background: linear-gradient(225deg, $colorsinspo2, $colorsinspo1);
     padding: 0 2rem;
-    color: $btnColor;
+    color: $offWhite;
     font-size: 1.2rem;
     // flex: 1;
   }
