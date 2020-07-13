@@ -36,8 +36,14 @@
 .title {
   margin-bottom: 1rem;
 }
+
 .summary {
   text-align: justify;
+  .summaryBtn {
+    border: none;
+    font-size: 1rem;
+    color: $colorsinspo1;
+  }
 }
 
 .timePart {
@@ -68,6 +74,7 @@
 .source {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 2rem;
   & span {
     margin-right: 0.5rem;

@@ -56,7 +56,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     const {
       allRecipes,
       loadingAllRecipes,
@@ -135,9 +134,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  const { recipes, recipe } = state;
+const mapStateToProps = ({ recipes, recipe }) => {
   return {
     allRecipes: recipes.data,
     loadingAllRecipes: recipes.loading,

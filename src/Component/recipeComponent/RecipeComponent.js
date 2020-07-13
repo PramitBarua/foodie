@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InstructionComponent from './instructionComponent/InstructionComponent';
 import styles from './RecipeComponent.module.scss';
 
@@ -28,12 +28,14 @@ const timeDiv = (title, timeInMin) => {
 
 function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
   let content = null;
+  let summaryContent = null;
+  let summaryBtn = null;
+
+  const [showSummary, setShowSummary] = useState(false);
 
   let containerClassName = styles.container;
   if (smallScreen) {
-    if (showRecipeOnly) {
-      containerClassName = styles.container;
-    } else {
+    if (!showRecipeOnly) {
       containerClassName = styles.containerHide;
     }
   }
@@ -52,13 +54,39 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
     preparationMinutes,
   } = recipeData;
 
+  summaryContent = summary;
+  if (summary.length > 150) {
+    if (showSummary) {
+      summaryContent = summary;
+      summaryBtn = (
+        <button
+          className={styles.summaryBtn}
+          onClick={() => setShowSummary(false)}
+        >
+          Show less
+        </button>
+      );
+    } else {
+      summaryContent = `${summary.slice(0, 150)}... `;
+      summaryBtn = (
+        <button
+          className={styles.summaryBtn}
+          onClick={() => setShowSummary(true)}
+        >
+          Show more
+        </button>
+      );
+    }
+  }
+
   content = (
     <>
       <h1 data-testid="component-title" className={styles.title}>
         {title}
       </h1>
       <div data-testid="component-summary" className={styles.summary}>
-        {summary}
+        {summaryContent}
+        {summaryBtn}
       </div>
       <img
         data-testid="component-image"
@@ -105,7 +133,12 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
       </div>
       <div className={styles.source}>
         <span>Source:</span>
-        <a data-testid="component-source" href={sourceUrl}>
+        <a
+          data-testid="component-source"
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {sourceName !== '' ? sourceName : sourceUrl}
         </a>
       </div>
