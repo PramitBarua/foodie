@@ -10,6 +10,10 @@
     width: 30%;
   }
 }
+
+.containerOuterHide {
+  display: none;
+}
 .containerInner {
   display: flex;
   flex-direction: column;

@@ -26,8 +26,17 @@ const timeDiv = (title, timeInMin) => {
   return null;
 };
 
-function RecipeComponent({ recipeData }) {
+function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
   let content = null;
+
+  let containerClassName = styles.container;
+  if (smallScreen) {
+    if (showRecipeOnly) {
+      containerClassName = styles.container;
+    } else {
+      containerClassName = styles.containerHide;
+    }
+  }
 
   const {
     title,
@@ -97,14 +106,14 @@ function RecipeComponent({ recipeData }) {
       <div className={styles.source}>
         <span>Source:</span>
         <a data-testid="component-source" href={sourceUrl}>
-          {sourceName}
+          {sourceName !== '' ? sourceName : sourceUrl}
         </a>
       </div>
     </>
   );
 
   return (
-    <div data-testid="recipe-component" className={styles.container}>
+    <div data-testid="recipe-component" className={containerClassName}>
       {content}
     </div>
   );

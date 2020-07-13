@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 
 import styles from './ListComponent.module.scss';
 
-function ListComponent({ recipes, onClick }) {
+function ListComponent({ recipes, onClick, smallScreen, showRecipeOnly }) {
   let content = null;
   const [imageLoading, setImageLoading] = useState(true);
   const counter = useRef(0);
@@ -44,7 +44,13 @@ function ListComponent({ recipes, onClick }) {
     });
   }
   return (
-    <div className={styles.containerOuter}>
+    <div
+      className={
+        smallScreen && showRecipeOnly
+          ? styles.containerOuterHide
+          : styles.containerOuter
+      }
+    >
       <div data-testid="container" className={styles.containerInner}>
         {content}
       </div>

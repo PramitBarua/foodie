@@ -13,11 +13,49 @@ import { getSingleRecipeAction } from './Redux/Action';
 import { singleRecipeUrl } from './helpers/getUrl';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      windowWidth: 0,
+      smallScreen: true,
+      showRecipeOnly: false,
+    };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.allRecipes !== this.props.allRecipes) {
+      this.setState({ showRecipeOnly: false });
+    }
+  }
+
+  updateWindowDimensions() {
+    if (window.innerWidth < 600) {
+      this.setState({ windowWidth: window.innerWidth, smallScreen: true });
+    } else {
+      this.setState({ windowWidth: window.innerWidth, smallScreen: false });
+    }
+  }
+
   handelSingleRecipeClick(id) {
     this.props.getSingleRecipe(singleRecipeUrl(id));
+    if (this.state.windowWidth < 600) {
+      this.setState({ showRecipeOnly: true });
+    }
   }
 
   render() {
+    console.log(this.state);
     const {
       allRecipes,
       loadingAllRecipes,
@@ -43,6 +81,8 @@ class App extends Component {
     } else if (allRecipes && allRecipes.length > 0) {
       listContent = (
         <ListComponent
+          smallScreen={this.state.smallScreen}
+          showRecipeOnly={this.state.showRecipeOnly}
           data-testid="list-component"
           recipes={allRecipes}
           onClick={this.handelSingleRecipeClick.bind(this)}
@@ -68,6 +108,8 @@ class App extends Component {
     ) {
       recipeContent = (
         <RecipeComponent
+          smallScreen={this.state.smallScreen}
+          showRecipeOnly={this.state.showRecipeOnly}
           data-testid="recipe-component"
           recipeData={singleRecipe}
         />

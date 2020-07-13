@@ -17,6 +17,9 @@
     width: 100%;
   }
 }
+.containerHide {
+  display: none;
+}
 .section {
   display: flex;
   margin-top: 2rem;
@@ -26,10 +29,11 @@
   & ul {
     list-style: none;
     width: 100%;
-    padding-right: 1rem;
+    padding-right: 1.5rem;
     & li {
+      text-align: justify;
       font-size: 1.2rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
     }
   }
 }
@@ -43,10 +47,14 @@
 
 .timePart {
   display: flex;
+  & h2 {
+    text-align: center;
+  }
   & li {
     border-right: 2px solid black;
     padding-right: 1rem;
     margin-right: 1rem;
+
     &:last-child {
       border-right: none;
     }

@@ -8,5 +8,8 @@
   overflow: hidden;
   & .container {
     display: flex;
+    & .listContent {
+      display: none;
+    }
   }
 }
