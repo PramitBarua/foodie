@@ -21,8 +21,10 @@ class App extends Component {
       smallScreen: true,
       showRecipeOnly: false,
     };
+
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleSingleRecipeClick = this.handleSingleRecipeClick.bind(this);
+    this.showListComponent = this.showListComponent.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +45,9 @@ class App extends Component {
       this.setState({ showRecipeOnly: false });
     }
   }
-
+  /**
+   *
+   */
   updateWindowDimensions() {
     // console.log('app component updateWindowDimensions');
     if (window.innerWidth <= 600 && !this.state.smallScreen) {
@@ -53,11 +57,23 @@ class App extends Component {
     }
   }
 
+  /**
+   *
+   */
   handleSingleRecipeClick(id) {
     // console.log('app component handleSingleRecipeClick');
     this.props.getSingleRecipe(singleRecipeUrl(id));
-    if (window.innerWidth < 600) {
+    if (window.innerWidth <= 600) {
       this.setState({ showRecipeOnly: true });
+    }
+  }
+
+  /**
+   *
+   */
+  showListComponent() {
+    if (window.innerWidth <= 600) {
+      this.setState({ showRecipeOnly: false });
     }
   }
 
@@ -120,6 +136,7 @@ class App extends Component {
           showRecipeOnly={this.state.showRecipeOnly}
           data-testid="recipe-component"
           recipeData={singleRecipe}
+          showListComponent={this.showListComponent}
         />
       );
     }

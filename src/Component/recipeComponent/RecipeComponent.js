@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BsArrowLeft } from 'react-icons/bs';
 import InstructionComponent from './instructionComponent/InstructionComponent';
 import styles from './RecipeComponent.module.scss';
 
@@ -32,10 +33,21 @@ const timeDiv = (title, timeInMin) => {
   return null;
 };
 
-function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
+/**
+ *
+ * @param {*} param0
+ */
+function RecipeComponent({
+  recipeData,
+  smallScreen,
+  showRecipeOnly,
+  showListComponent,
+}) {
+  // conditional AJX container
   let content = null;
   let summaryContent = null;
   let summaryBtn = null;
+  let showListComponentBtn = null;
 
   const [showSummary, setShowSummary] = useState(false);
 
@@ -43,6 +55,15 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
   if (smallScreen) {
     if (!showRecipeOnly) {
       containerClassName = styles.containerHide;
+    } else {
+      showListComponentBtn = (
+        <button
+          className={styles.showListComponentBtn}
+          onClick={() => showListComponent()}
+        >
+          <BsArrowLeft size={18} />
+        </button>
+      );
     }
   }
 
@@ -86,6 +107,7 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
 
   content = (
     <>
+      {showListComponentBtn}
       <h1 data-testid="component-title" className={styles.title}>
         {title}
       </h1>
