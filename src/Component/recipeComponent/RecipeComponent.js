@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import InstructionComponent from './instructionComponent/InstructionComponent';
 import styles from './RecipeComponent.module.scss';
 
+/**
+ * @function - it converts minutes to hour format and return JSX with title and modified time
+ * @param {string} title
+ * @param {number} timeInMin
+ * @returns {JSX}
+ */
 const timeDiv = (title, timeInMin) => {
   let displayTime = null;
   if (!isNaN(timeInMin)) {
@@ -57,7 +63,6 @@ function RecipeComponent({ recipeData, smallScreen, showRecipeOnly }) {
   summaryContent = summary;
   if (summary.length > 150) {
     if (showSummary) {
-      summaryContent = summary;
       summaryBtn = (
         <button
           className={styles.summaryBtn}

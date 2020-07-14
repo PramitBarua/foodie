@@ -18,44 +18,52 @@ class App extends Component {
     super(props);
 
     this.state = {
-      windowWidth: 0,
       smallScreen: true,
       showRecipeOnly: false,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.handleSingleRecipeClick = this.handleSingleRecipeClick.bind(this);
   }
 
   componentDidMount() {
+    // console.log('app component componentDidMount');
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
+    // console.log('app component componentWillUnmount');
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   componentDidUpdate(prevProps) {
+    console.log('app component componentDidUpdate');
     if (prevProps.allRecipes !== this.props.allRecipes) {
+      // console.log('app component componentDidUpdate triger setState');
       this.setState({ showRecipeOnly: false });
     }
   }
 
   updateWindowDimensions() {
-    if (window.innerWidth < 600) {
-      this.setState({ windowWidth: window.innerWidth, smallScreen: true });
-    } else {
-      this.setState({ windowWidth: window.innerWidth, smallScreen: false });
+    // console.log('app component updateWindowDimensions');
+    if (window.innerWidth <= 600 && !this.state.smallScreen) {
+      this.setState({ smallScreen: true });
+    } else if (window.innerWidth > 600 && this.state.smallScreen) {
+      this.setState({ smallScreen: false });
     }
   }
 
-  handelSingleRecipeClick(id) {
+  handleSingleRecipeClick(id) {
+    // console.log('app component handleSingleRecipeClick');
     this.props.getSingleRecipe(singleRecipeUrl(id));
-    if (this.state.windowWidth < 600) {
+    if (window.innerWidth < 600) {
       this.setState({ showRecipeOnly: true });
     }
   }
 
   render() {
+    // console.log('app component state', this.state);
+    // console.log('app component props', this.props);
     const {
       allRecipes,
       loadingAllRecipes,
@@ -85,7 +93,7 @@ class App extends Component {
           showRecipeOnly={this.state.showRecipeOnly}
           data-testid="list-component"
           recipes={allRecipes}
-          onClick={this.handelSingleRecipeClick.bind(this)}
+          onClick={this.handleSingleRecipeClick}
         />
       );
     }
