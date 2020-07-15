@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styles from './App.module.scss';
 import { connect } from 'react-redux';
 import {
@@ -142,19 +143,23 @@ class App extends Component {
     }
 
     return (
-      <>
-        <BackgroundVideoComponent data-testid="background-component" />
-        <div className={styles.app}>
-          <HeaderComponent data-testid="header-component" />
-          {listContent || recipeContent ? (
-            <div className={styles.container}>
-              {listContent}
-              {recipeContent}
+      <Router basename={'/project/foodie'}>
+        <Route path="/">
+          <>
+            <BackgroundVideoComponent data-testid="background-component" />
+            <div className={styles.app}>
+              <HeaderComponent data-testid="header-component" />
+              {listContent || recipeContent ? (
+                <div className={styles.container}>
+                  {listContent}
+                  {recipeContent}
+                </div>
+              ) : null}
+              <Footer />
             </div>
-          ) : null}
-          <Footer />
-        </div>
-      </>
+          </>
+        </Route>
+      </Router>
     );
   }
 }
