@@ -12,7 +12,6 @@ const fetchRequest = () => {
 };
 
 const fetchSuccess = (body) => {
-  // console.log(body);
   return {
     type: SEARCH_SINGLE_RECIPE_SUCCESS,
     body,

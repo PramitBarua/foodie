@@ -36,7 +36,6 @@ describe('recipe component', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<RecipeComponent {...initialState} />);
-    // console.log(wrapper.debug());
   });
   it('the component should render without error', () => {
     const component = findByTestAttr(wrapper, 'recipe-component');

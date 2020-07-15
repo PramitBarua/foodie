@@ -61,6 +61,4 @@ const store = createStore(
   applyMiddleware(...middleware)
 );
 
-// console.log('in store', store.getState());
-
 export default store;

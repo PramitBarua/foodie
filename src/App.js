@@ -29,13 +29,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log('app component componentDidMount');
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
-    // console.log('app component componentWillUnmount');
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
@@ -72,7 +70,6 @@ class App extends Component {
    *
    */
   updateWindowDimensions() {
-    // console.log('app component updateWindowDimensions');
     if (window.innerWidth <= 600 && !this.state.smallScreen) {
       this.setState({ smallScreen: true });
     } else if (window.innerWidth > 600 && this.state.smallScreen) {
@@ -84,7 +81,6 @@ class App extends Component {
    *
    */
   handleSingleRecipeClick(id) {
-    // console.log('app component handleSingleRecipeClick');
     this.props.getSingleRecipe(singleRecipeUrl(id));
     if (window.innerWidth <= 600) {
       this.setState({ showRecipeOnly: true });

@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react';
 import styles from './ListComponent.module.scss';
 
 function ListComponent({ recipes, onClick, smallScreen, showRecipeOnly }) {
-  // console.log('list component');
   let content = null;
   const [imageLoading, setImageLoading] = useState(true);
   const counter = useRef(0);
@@ -17,7 +16,6 @@ function ListComponent({ recipes, onClick, smallScreen, showRecipeOnly }) {
 
   if (recipes.length > 0) {
     content = recipes.map((recipe) => {
-      // console.log(recipe.id);
       return (
         <button
           key={recipe.id}

@@ -9,7 +9,7 @@ const setup = (initialState) => {
   const wrapper = shallow(<Search store={store} />)
     .dive()
     .dive();
-  // console.log(wrapper.debug());
+
   return wrapper;
 };
 
