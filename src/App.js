@@ -40,12 +40,34 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('app component componentDidUpdate');
-    if (prevProps.allRecipes !== this.props.allRecipes) {
-      // console.log('app component componentDidUpdate triger setState');
+    const prevAllRecipeId = prevProps.allRecipes.map((item) => item.id);
+    const thisPropAllRecipeId = this.props.allRecipes.map((item) => item.id);
+
+    if (
+      !this.arraysEqual(prevAllRecipeId, thisPropAllRecipeId) &&
+      this.state.showRecipeOnly
+    ) {
       this.setState({ showRecipeOnly: false });
     }
   }
+
+  /**
+   *
+   */
+  arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    const aSort = [...a].sort();
+    const bSort = [...b].sort();
+
+    for (var i = 0; i < aSort.length; ++i) {
+      if (aSort[i] !== bSort[i]) return false;
+    }
+    return true;
+  }
+
   /**
    *
    */
@@ -79,8 +101,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log('app component state', this.state);
-    // console.log('app component props', this.props);
     const {
       init,
       allRecipes,
