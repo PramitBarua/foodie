@@ -1,15 +1,18 @@
 .app {
   max-width: 1200px;
-  display: grid;
-  grid-template-rows: auto;
-  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: auto;
-  min-height: 100vh;
-  overflow: hidden;
+  max-height: 100vh;
+
   & .container {
     display: flex;
-    & .listContent {
-      display: none;
+    max-height: 75vh;
+    overflow-y: hidden;
+    margin-top: 0.1rem;
+    @media only screen and (min-width: 1200px) {
+      height: 72vh;
     }
   }
 }
