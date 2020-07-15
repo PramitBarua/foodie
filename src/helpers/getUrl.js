@@ -21,7 +21,3 @@ export const allRecipeUrl = (searchText) => {
 export const singleRecipeUrl = (id) => {
   return `${BASE_URL}/${id}/information?apiKey=${API_KEY}&includeNutrition=false`;
 };
-
-// https://api.spoonacular.com/recipes
-
-// https://api.spoonacular.com/recipes/869354/information?apiKey=f887907914324b8ea6677a7ed0de3d2b&includeNutrition=false

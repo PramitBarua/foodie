@@ -5,7 +5,7 @@ import {
   SEARCH_RECIPES_FAILURE,
 } from './ActionTypes';
 
-import { changeInit } from './changeInitAction';
+import { changeInit } from './';
 
 function fetchRequest() {
   return {

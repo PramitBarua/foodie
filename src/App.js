@@ -12,7 +12,7 @@ import {
   Footer,
 } from './Component/index';
 import { getSingleRecipeAction } from './Redux/Action';
-import { singleRecipeUrl } from './helpers/getUrl';
+import { singleRecipeUrl } from './helpers';
 
 class App extends Component {
   constructor(props) {
