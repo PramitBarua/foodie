@@ -10,6 +10,13 @@ function ErrorComponent({ code }) {
         contact;
       </span>
     );
+  } else if (code === 'no result found') {
+    content = (
+      <span>
+        No result has found for the searched text. <br /> Please try different
+        text to search. <br /> If this error persists, please contact;
+      </span>
+    );
   } else {
     content = (
       <span>

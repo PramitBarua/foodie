@@ -82,6 +82,7 @@ class App extends Component {
     // console.log('app component state', this.state);
     // console.log('app component props', this.props);
     const {
+      init,
       allRecipes,
       loadingAllRecipes,
       errorAllRecipes,
@@ -101,6 +102,13 @@ class App extends Component {
         <ErrorComponent
           data-testid="list-error-component"
           code={errorAllRecipes.code}
+        />
+      );
+    } else if (!init && allRecipes && allRecipes.length === 0) {
+      listContent = (
+        <ErrorComponent
+          data-testid="list-error-component"
+          code={'no result found'}
         />
       );
     } else if (allRecipes && allRecipes.length > 0) {
@@ -164,8 +172,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ recipes, recipe }) => {
+const mapStateToProps = ({ init, recipes, recipe }) => {
   return {
+    init: init,
     allRecipes: recipes.data,
     loadingAllRecipes: recipes.loading,
     errorAllRecipes: recipes.error,
