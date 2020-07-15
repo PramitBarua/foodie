@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './Reducer/rootReducer';
 
 const initialState = {
+  init: true,
   searchText: '',
   recipes: {
     // contains the recipes info for list component

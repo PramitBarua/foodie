@@ -5,6 +5,8 @@ import {
   SEARCH_RECIPES_FAILURE,
 } from './ActionTypes';
 
+import { changeInit } from './changeInitAction';
+
 function fetchRequest() {
   return {
     type: SEARCH_RECIPES_REQUEST,
@@ -27,6 +29,7 @@ function fetchFailure(error) {
 
 export const getAllRecipe = (apiEndpoint) => (dispatch) => {
   dispatch(fetchRequest());
+  dispatch(changeInit(false));
   return axios
     .get(apiEndpoint)
     .then((response) => {
