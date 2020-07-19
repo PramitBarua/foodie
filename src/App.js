@@ -4,7 +4,6 @@ import styles from './App.module.scss';
 import { connect } from 'react-redux';
 import {
   HeaderComponent,
-  BackgroundVideoComponent,
   ListComponent,
   RecipeComponent,
   LoadingComponent,
@@ -109,6 +108,12 @@ class App extends Component {
 
     let listContent = null;
     let recipeContent = null;
+    let infoText = (
+      <h2 className={styles.infoText}>
+        Search over 1,000,000 recipes in natural language. <br />
+        Search, Explore, Cook and Repeat
+      </h2>
+    );
 
     // list content
     if (loadingAllRecipes) {
@@ -169,19 +174,22 @@ class App extends Component {
     return (
       <Router basename={'/project/foodie'}>
         <Route path="/">
-          <>
-            <BackgroundVideoComponent data-testid="background-component" />
+          <div className={styles.backgroundImg}>
             <div className={styles.app}>
               <HeaderComponent data-testid="header-component" />
-              {listContent || recipeContent ? (
-                <div className={styles.container}>
-                  {listContent}
-                  {recipeContent}
-                </div>
-              ) : null}
-              <Footer />
+              <div className={styles.container}>
+                {listContent || recipeContent ? (
+                  <>
+                    {listContent}
+                    {recipeContent}
+                  </>
+                ) : (
+                  infoText
+                )}
+              </div>
             </div>
-          </>
+            <Footer />
+          </div>
         </Route>
       </Router>
     );
@@ -208,5 +216,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-// export default connect(mapToStateProps, mapToDispatchProps)(App);
 export default connect(mapStateToProps, mapDispatchToProps)(App);

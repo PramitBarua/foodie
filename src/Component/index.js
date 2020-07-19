@@ -1,5 +1,3 @@
-export { default as BackgroundVideoComponent } from './backgroundVideoComponent/BackgroundVideoComponent';
-// export { default as Search } from './Search/Search';
 export { default as HeaderComponent } from './HeaderComponent/HeaderComponent';
 export { default as Search } from './Search/Search';
 export { default as ListComponent } from './listComponent/ListComponent';
